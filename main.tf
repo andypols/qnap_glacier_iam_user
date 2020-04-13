@@ -66,7 +66,7 @@ resource "aws_iam_policy" "qnap_glacier_iam_user_policy" {
   description = "Policy for QNAP Glacier User"
   name        = "QNAPGlacierIAMUserPolicy-${var.qnap_vault_name}"
   path        = "/automation/"
-  policy      = "${data.aws_iam_policy_document.qnap_glacier_iam_user_policy_document.json}"
+  policy      = data.aws_iam_policy_document.qnap_glacier_iam_user_policy_document.json
 }
 
 resource "aws_iam_user" "qnap_glacier_iam_user" {
@@ -75,10 +75,10 @@ resource "aws_iam_user" "qnap_glacier_iam_user" {
 }
 
 resource "aws_iam_access_key" "qnap_glacier_iam_user_access_key" {
-  user = "${aws_iam_user.qnap_glacier_iam_user.name}"
+  user = aws_iam_user.qnap_glacier_iam_user.name
 }
 
 resource "aws_iam_user_policy_attachment" "qnap_glacier_iam_user_policy_attachment" {
-  user       = "${aws_iam_user.qnap_glacier_iam_user.name}"
-  policy_arn = "${aws_iam_policy.qnap_glacier_iam_user_policy.arn}"
+  user       = aws_iam_user.qnap_glacier_iam_user.name
+  policy_arn = aws_iam_policy.qnap_glacier_iam_user_policy.arn
 }

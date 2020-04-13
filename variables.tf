@@ -3,14 +3,6 @@ variable "region" {
   default     = "eu-west-1"
 }
 
-variable "shared_credentials_file" {
-  description = "The location of the AWS shared credentials file (e.g. ~dominic/.aws/credentials)"
-}
-
-variable "profile" {
-  description = "The profile to use"
-}
-
 variable "qnap_vault_name" {
   description = "The name of the QNAP Glacier vault"
   default     = "QNAP-Glacier-Vault"
